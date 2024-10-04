@@ -1,5 +1,5 @@
 #include"NTRIPClient.h"
-bool NTRIPClient::reqSrcTbl(char* host,int &port)
+bool NTRIPClient::reqSrcTbl(const char* host, int port)
 {
   if(!connect(host,port)){
       Serial.print("Cannot connect to ");
@@ -30,7 +30,7 @@ bool NTRIPClient::reqSrcTbl(char* host,int &port)
   return true;
     
 }
-bool NTRIPClient::reqRaw(char* host,int &port,char* mntpnt,char* user,char* psw)
+bool NTRIPClient::reqRaw(const char* host, int port, const char* mntpnt, const char* user, const char* psw)
 {
     if(!connect(host,port))return false;
     String p="GET /";
@@ -79,11 +79,11 @@ bool NTRIPClient::reqRaw(char* host,int &port,char* mntpnt,char* user,char* psw)
     }
     return true;
 }
-bool NTRIPClient::reqRaw(char* host,int &port,char* mntpnt)
+bool NTRIPClient::reqRaw(const char* host, int port, const char* mntpnt)
 {
     return reqRaw(host,port,mntpnt,"","");
 }
-int NTRIPClient::readLine(char* _buffer,int size)
+int NTRIPClient::readLine(char* _buffer, int size)
 {
   int len = 0;
   while(available()) {
